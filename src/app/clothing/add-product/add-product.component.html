@@ -1,0 +1,22 @@
+<h1> add a product </h1>
+
+<form (ngSubmit)="validateForm(formVarriable)" #formVarriable ="ngForm">
+  <div ngModelGroup="product">
+    <input type="text" required name="name" ngModel >
+   
+    <div *ngIf = "formVarriable.value.product.name.invalid"> 
+      Name is required! 
+    </div>
+    <input type="number" placeholder="$1.00" minlength="2" name="price" ngModel >
+    <div *ngIf = "formVarriable.value.product.price.error.minlength">
+      Required format is 0.00
+    </div>
+    <input type="file" accept="image/*" name="url" ngModel > Upload a picture
+    <div *ngIf ="formVarriable.value.product.url.invaild">
+      Must upload an image file
+    </div>
+    <input type="radio" name="forSale" ngModel >Check if for sale
+ 
+
+
+  </div>
