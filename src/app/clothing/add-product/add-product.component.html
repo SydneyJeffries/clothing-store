@@ -2,21 +2,30 @@
 
 <form (ngSubmit)="validateForm(formVarriable)" #formVarriable ="ngForm">
   <div ngModelGroup="product">
-    <input type="text" required name="name" ngModel >
-   
-    <div *ngIf = "formVarriable.value.product.name.invalid"> 
-      Name is required! 
+    <div>
+    <input type="text" #productName="ngModule" placeholder="Name of Product" required name="name" ngModel >
     </div>
-    <input type="number" placeholder="$1.00" minlength="2" name="price" ngModel >
-    <div *ngIf = "formVarriable.value.product.price.error.minlength">
+    <div *ngIf = "(productName.dirty || message) && productName.invalid"> 
+      a Name is required! 
+    </div>
+    <div>
+    <input type="text" #productPrice="ngModule"  placeholder="$1.00" minlength="4" name="price" ngModel >
+    </div>
+    <div *ngIf = "(productPrice.dirty || message) && productPrice.invalid">
       Required format is 0.00
     </div>
-    <input type="file" accept="image/*" name="url" ngModel > Upload a picture
-    <div *ngIf ="formVarriable.value.product.url.invaild">
+    <div>
+    <input type="file" #productIMG="ngModule" accept="image/*" name="url" ngModel > Upload a picture
+  </div>
+    <div *ngIf ="(productIMG.dirty || message) && productIMG.invalid">
+     <div *ngIf="productIMG.errors.required">
       Must upload an image file
+     </div>
     </div>
-    <input type="radio" name="forSale" ngModel >Check if for sale
- 
+    <div>
+    <input type="radio" #productSale="ngModule" name="forSale" ngModel >Check if for sale
+    </div>
+    <button type="submit" > Submit </button>
 
 
   </div>
